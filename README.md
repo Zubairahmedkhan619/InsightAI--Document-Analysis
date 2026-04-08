@@ -74,7 +74,6 @@ STRIPE_SECRET_KEY=your_stripe_secret_key
 STRIPE_WEBHOOK_SECRET=your_stripe_webhook_secret
 NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY=your_stripe_publishable_key
 
-=======
 # CLOUDFLARE R2
 R2_ACCESS_KEY_ID=
 R2_SECRET_ACCESS_KEY=
@@ -89,14 +88,11 @@ AWS_S3_BUCKET_NAME=your_s3_bucket_name
 AWS_REGION=your_aws_region
 
 # AI API
-<<<<<<< HEAD
 GROQ_API_KEY=your_groq_api_key
-=======
-GROQ_API_KEY=your_groq_api_key4
 
 # RESEND
 RESEND_API_KEY=
->>>>>>> 9b2890840652e7375e6a955281e88ebd0b66a276
+
 ```
 
 4. Set up the database:
@@ -170,8 +166,6 @@ This project is private and proprietary.
 - Groq AI
 - Clerk Authentication
 - Stripe Payments
-<<<<<<< HEAD
 - AWS S3
-=======
-- AWS S3
->>>>>>> 9b2890840652e7375e6a955281e88ebd0b66a276
+
+
