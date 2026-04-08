@@ -87,6 +87,9 @@ AWS_REGION=your_aws_region
 # AI API
 GROQ_API_KEY=your_groq_api_key
 
+#ngrok URL
+N8N_WEBHOOK_URL=your_n8n_url
+
 # RESEND
 RESEND_API_KEY=
 
