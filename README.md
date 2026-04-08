@@ -74,7 +74,6 @@ STRIPE_SECRET_KEY=your_stripe_secret_key
 STRIPE_WEBHOOK_SECRET=your_stripe_webhook_secret
 NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY=your_stripe_publishable_key
 
-<<<<<<< HEAD
 =======
 # CLOUDFLARE R2
 R2_ACCESS_KEY_ID=
@@ -83,7 +82,6 @@ R2_BUCKET_NAME=
 R2_PUBLIC_URL=
 
 
->>>>>>> 9b2890840652e7375e6a955281e88ebd0b66a276
 # AWS S3
 AWS_ACCESS_KEY_ID=your_aws_access_key_id
 AWS_SECRET_ACCESS_KEY=your_aws_secret_access_key
