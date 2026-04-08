@@ -2,7 +2,7 @@
 # InsightAI - Document Analysis Pipeline
 =======
 # InsightAI--Document-Analysis
->>>>>>> 9b2890840652e7375e6a955281e88ebd0b66a276
+
 
 InsightAI is a powerful web application that allows users to analyze documents instantly using advanced AI. Upload files, paste links, or analyze shared URLs to get key findings and actionable insights.
 
