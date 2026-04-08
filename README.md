@@ -1,30 +1,30 @@
-# InsightAI--Document-Analysis
-
+# InsightAI - Document Analysis Pipeline
 
 InsightAI is a powerful web application that allows users to analyze documents instantly using advanced AI. Upload files, paste links, or analyze shared URLs to get key findings and actionable insights.
 
 ## Features
 
-- **Document Analysis**: AI-powered analysis of various document types (PDFs, text files, web pages)
+- **Document Analysis**: AI-powered analysis of various document types (PDFs, DOCX, Excel, PPT, Images, Videos, YouTube, URLs)
 - **Multiple Input Methods**: Upload files directly or analyze content from URLs
-- **Real-time Processing**: Live status updates during analysis
+- **Real-time Processing**: Live status updates during analysis with WebSocket support
 - **Multilingual Support**: Output insights in multiple languages
 - **Analysis History**: Track and review past analyses
 - **Credits System**: Manage usage with a credit-based system
 - **PDF Export**: Generate and download analysis results as PDF
 - **User Authentication**: Secure sign-in with Clerk
 - **Subscription Management**: Stripe-powered subscriptions and payments
+- **Referral System**: Earn credits through referrals
 
 ## Tech Stack
 
 - **Frontend**: Next.js 16, React 19, TypeScript, Tailwind CSS
 - **Backend**: Next.js API Routes
-- **Database**: Supabase
+- **Database**: Supabase (PostgreSQL)
 - **Authentication**: Clerk
 - **Payments**: Stripe
-- **File Storage**: AWS S3
-- **AI Processing**: Groq API
-- **UI Components**: Radix UI, Framer Motion, Lucide React
+- **File Storage**: Cloudflare R2 / AWS S3
+- **AI Processing**: Groq API (Llama 3, Mixtral, Gemma models)
+- **UI Components**: Radix UI, Framer Motion, Lucide React, shadcn/ui
 
 ## Getting Started
 
@@ -35,7 +35,7 @@ InsightAI is a powerful web application that allows users to analyze documents i
 - Supabase account
 - Clerk account
 - Stripe account
-- AWS S3 bucket
+- Cloudflare R2 or AWS S3 bucket
 
 ### Installation
 
@@ -71,14 +71,13 @@ STRIPE_SECRET_KEY=your_stripe_secret_key
 STRIPE_WEBHOOK_SECRET=your_stripe_webhook_secret
 NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY=your_stripe_publishable_key
 
-# CLOUDFLARE R2
+# Cloudflare R2 (or AWS S3)
 R2_ACCESS_KEY_ID=
 R2_SECRET_ACCESS_KEY=
 R2_BUCKET_NAME=
 R2_PUBLIC_URL=
 
-
-# AWS S3
+# AWS S3 (alternative)
 AWS_ACCESS_KEY_ID=your_aws_access_key_id
 AWS_SECRET_ACCESS_KEY=your_aws_secret_access_key
 AWS_S3_BUCKET_NAME=your_s3_bucket_name
@@ -87,16 +86,16 @@ AWS_REGION=your_aws_region
 # AI API
 GROQ_API_KEY=your_groq_api_key
 
-#ngrok URL
+# Webhooks
 N8N_WEBHOOK_URL=your_n8n_url
 
-# RESEND
+# Email
 RESEND_API_KEY=
-
 ```
 
 4. Set up the database:
 Run the SQL schema from `supabase/schema.sql` in your Supabase dashboard.
+Enable Realtime on the `jobs` table: Supabase Dashboard → Database → Replication → jobs
 
 5. Run the development server:
 ```bash
@@ -115,9 +114,45 @@ Open [http://localhost:3000](http://localhost:3000) in your browser.
 6. **Download**: Export results as PDF (Pro feature)
 7. **Manage Credits**: Monitor usage and upgrade for more credits
 
+## Project Structure
+
+```
+src/
+├── app/                    # Next.js App Router
+│   ├── api/               # API routes
+│   ├── history/           # Analysis history page
+│   ├── sign-in/           # Sign in page
+│   ├── sign-up/           # Sign up page
+│   ├── globals.css        # Global styles
+│   ├── layout.tsx         # Root layout
+│   ├── page.tsx           # Home page
+│   └── providers.tsx      # App providers
+├── components/            # React components
+│   ├── analysis/          # Analysis components
+│   │   ├── ResultCard.tsx
+│   │   └── UploadZone.tsx
+│   ├── landing/           # Landing page components
+│   │   ├── HeroSection.tsx
+│   │   └── PricingSection.tsx
+│   └── ui/                # Reusable UI components (shadcn)
+├── hooks/                 # Custom React hooks
+│   ├── useCredits.ts
+│   └── useJobStatus.ts
+├── lib/                   # Utility libraries
+│   ├── supabase/          # Supabase client setup
+│   │   ├── client.ts
+│   │   ├── server.ts
+│   │   └── middleware.ts
+│   ├── pdf-generator.ts   # PDF generation
+│   ├── constants.ts
+│   ├── query-client.ts
+│   └── utils.ts
+└── middleware.ts          # Next.js middleware
+```
+
 ## API Routes
 
-- `POST /api/upload` - Upload files to S3
+- `POST /api/upload` - Upload files to R2/S3
 - `POST /api/jobs` - Create analysis jobs
 - `GET /api/jobs` - Get analysis history
 - `GET /api/jobs/[id]` - Get specific job details
@@ -126,26 +161,19 @@ Open [http://localhost:3000](http://localhost:3000) in your browser.
 - `POST /api/stripe/create-checkout` - Create Stripe checkout sessions
 - `POST /api/stripe/webhooks/*` - Handle Stripe webhooks
 
-## Project Structure
+## Database Schema
 
-```
-src/
-├── app/                    # Next.js app router
-│   ├── api/               # API routes
-│   ├── globals.css        # Global styles
-│   ├── layout.tsx         # Root layout
-│   ├── page.tsx           # Home page
-│   └── ...
-├── components/            # React components
-│   ├── analysis/          # Analysis-related components
-│   ├── landing/           # Landing page components
-│   └── ui/                # Reusable UI components
-├── hooks/                 # Custom React hooks
-├── lib/                   # Utility libraries
-│   ├── supabase/          # Supabase client setup
-│   └── utils.ts           # Helper functions
-└── middleware.ts          # Next.js middleware
-```
+- **users**: User profiles synced from Clerk
+- **jobs**: Analysis jobs with status, results, and metadata
+- **user_credits**: Credit balance and plan information
+- **subscriptions**: Stripe subscription records
+- **ai_agent_status**: Track daily AI API usage limits
+
+## Available AI Models
+
+- Llama 3 70B (default)
+- Mixtral 8x7B
+- Gemma 7B
 
 ## Contributing
 
@@ -161,11 +189,11 @@ This project is private and proprietary.
 
 ## Built with
 
-- Next.js
+- Next.js 16
 - Supabase
 - Groq AI
 - Clerk Authentication
 - Stripe Payments
-- AWS S3
-
-
+- Cloudflare R2 / AWS S3
+- Radix UI / shadcn/ui
+- Framer Motion
