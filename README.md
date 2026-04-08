@@ -70,6 +70,13 @@ STRIPE_SECRET_KEY=your_stripe_secret_key
 STRIPE_WEBHOOK_SECRET=your_stripe_webhook_secret
 NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY=your_stripe_publishable_key
 
+# CLOUDFLARE R2
+R2_ACCESS_KEY_ID=
+R2_SECRET_ACCESS_KEY=
+R2_BUCKET_NAME=
+R2_PUBLIC_URL=
+
+
 # AWS S3
 AWS_ACCESS_KEY_ID=your_aws_access_key_id
 AWS_SECRET_ACCESS_KEY=your_aws_secret_access_key
@@ -77,7 +84,10 @@ AWS_S3_BUCKET_NAME=your_s3_bucket_name
 AWS_REGION=your_aws_region
 
 # AI API
-GROQ_API_KEY=your_groq_api_key
+GROQ_API_KEY=your_groq_api_key4
+
+# RESEND
+RESEND_API_KEY=
 ```
 
 4. Set up the database:
