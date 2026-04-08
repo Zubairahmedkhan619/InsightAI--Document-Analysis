@@ -1,14 +1,8 @@
-<<<<<<< HEAD
-# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
-
-# dependencies
-=======
 # See https://help.github.com/articles/ignoring-files/
 
 # -----------------
 # dependencies
 # -----------------
->>>>>>> 9b2890840652e7375e6a955281e88ebd0b66a276
 /node_modules
 /.pnp
 .pnp.*
@@ -18,23 +12,6 @@
 !.yarn/releases
 !.yarn/versions
 
-<<<<<<< HEAD
-# testing
-/coverage
-
-# next.js
-/.next/
-/out/
-
-# production
-/build
-
-# misc
-.DS_Store
-*.pem
-
-# debug
-=======
 # -----------------
 # build outputs
 # -----------------
@@ -51,41 +28,12 @@ coverage/
 # -----------------
 # logs
 # -----------------
->>>>>>> 9b2890840652e7375e6a955281e88ebd0b66a276
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 .pnpm-debug.log*
 debug.log
 
-<<<<<<< HEAD
-# env files (can opt-in for committing if needed)
-.env*
-
-# vercel
-.vercel
-
-# typescript
-*.tsbuildinfo
-tsconfig.tsbuildinfo
-next-env.d.ts
-
-# clerk configuration (can include secrets)
-/.clerk/
-
-node_modules/
-.env
-.env.local
-.env.local.example
-.DS_Store
-.next
-dist
-out
-
-check_supabase.js
-read_docx.js
-read_docx
-=======
 # -----------------
 # environment variables (IMPORTANT)
 # -----------------
@@ -118,4 +66,3 @@ check_supabase.js
 read_docx.js
 read_docx
 .vscode/
->>>>>>> 9b2890840652e7375e6a955281e88ebd0b66a276
