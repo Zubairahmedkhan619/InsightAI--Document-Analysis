@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # InsightAI - Document Analysis Pipeline
 =======
 # InsightAI--Document-Analysis
